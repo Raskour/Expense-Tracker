@@ -64,18 +64,20 @@ export default function FirstPage() {
   }
 
   return (
-    <div>
-      <h1>Am I spending too much?</h1>
-      <ManageExpensesLink hasCurrentDayExpenses={hasCurrentDayExpenses} />
+    <main className="page_wrapper">
+      <div className="header">
+        <h1>Am I spending too much?</h1>
+        <ManageExpensesLink hasCurrentDayExpenses={hasCurrentDayExpenses} />
+      </div>
       {error && <p className="error">{error}</p>}
       <ul className="expenses">
         {weeklyExpenses.map((expense) => (
           <li>
-            <div className="expense_item">
+            <div className="expense_item--wrapper">
               <span>
                 {expense.type_name} {expenseIconMap[expense.type_name]}
               </span>
-              <div className="current_week">
+              <div className="expense_item--amount">
                 <strong>${expense.current_week_amount} / week</strong>
                 <PercAverageDiff percentageDiff={expense.percentage_diff} />
               </div>
@@ -83,13 +85,17 @@ export default function FirstPage() {
           </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
 }
 
 function ManageExpensesLink({ hasCurrentDayExpenses }) {
   if (hasCurrentDayExpenses) {
-    return <Link to="/expenses/edit">Edit expenses</Link>;
+    return (
+      <Link to="/expenses/edit" className="button link">
+        Edit expenses
+      </Link>
+    );
   }
   return <Link to="/expenses/add">Add expenses</Link>;
 }
@@ -105,13 +111,13 @@ const expenseIconMap = {
 function PercAverageDiff({ percentageDiff }) {
   if (percentageDiff > 0) {
     return (
-      <small style={{ color: "red" }}>
+      <small className="avg_up">
         ↑ ${Math.abs(percentageDiff)}% above average
       </small>
     );
   } else if (percentageDiff < 0) {
     return (
-      <small style={{ color: "green" }}>
+      <small className="avg_down">
         ↓ ${Math.abs(percentageDiff)}% below average
       </small>
     );

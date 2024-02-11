@@ -1,8 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Expenses from "./Expenses";
 import ManageExpenses from "./ManageExpenses";
+
+import "./App.css";
 
 function App() {
   return (

@@ -124,53 +124,61 @@ export default function ManageExpenses() {
   }
 
   return (
-    <Box sx={{ maxWidth: 600, p: 4 }}>
+    <main className="page_wrapper">
       <h1>How much did I spend today?</h1>
       {error && <p className="error">{error}</p>}
-      <form onSubmit={handleExpenses}>
-        <label htmlFor="coffee">Coffee</label>
-        <input
-          name="coffee"
-          type="number"
-          id="coffee"
-          value={expenses.coffee}
-          onChange={handleExpenseChange}
-          required
-          min="1"
-          max="100"
-        />
+      <form className="expense-form" onSubmit={handleExpenses}>
+        <div className="form-group">
+          <label htmlFor="food">Food 🍔</label>
+          <input
+            name="food"
+            type="number"
+            id="food"
+            value={expenses.food}
+            onChange={handleExpenseChange}
+            required
+            min="1"
+            max="100"
+          />
+        </div>
 
-        <label htmlFor="food">Food</label>
-        <input
-          name="food"
-          type="number"
-          id="food"
-          value={expenses.food}
-          onChange={handleExpenseChange}
-          required
-          min="1"
-          max="100"
-        />
+        <div className="form-group">
+          <label htmlFor="coffee">Coffee ☕</label>
+          <input
+            name="coffee"
+            type="number"
+            id="coffee"
+            value={expenses.coffee}
+            onChange={handleExpenseChange}
+            required
+            min="1"
+            max="100"
+          />
+        </div>
 
-        <label htmlFor="alcohol">Alcohol</label>
-        <input
-          name="alcohol"
-          type="number"
-          id="alcohol"
-          value={expenses.alcohol}
-          onChange={handleExpenseChange}
-          required
-          min="1"
-          max="100"
-        />
+        <div className="form-group">
+          <label htmlFor="alcohol">Alcohol 🍺</label>
+          <input
+            name="alcohol"
+            type="number"
+            id="alcohol"
+            value={expenses.alcohol}
+            onChange={handleExpenseChange}
+            required
+            min="1"
+            max="100"
+          />
+        </div>
 
-        <button type="submit">Add expenses</button>
+        <div className="expense-form__actions">
+          <Link to="/" className="button link">
+            Back
+          </Link>
+          <button type="submit" className="button">
+            {isBulkEditing ? "Update expenses" : "Add expenses"}
+          </button>
+        </div>
       </form>
-      <a href="/">Back</a>
-
-      <Link to="/" underline="hover" color="secondary">
-        Back
-      </Link>
-    </Box>
+    </main>
   );
 }
