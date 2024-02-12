@@ -67,13 +67,16 @@ export default function Expenses() {
     return <p>Loading...</p>;
   }
 
+  if (error) {
+    return <p className="error">{error}</p>;
+  }
+
   return (
     <main className="page_wrapper">
       <div className="header">
         <h1>Am I spending too much?</h1>
         <ManageExpensesLink hasCurrentDayExpenses={hasCurrentDayExpenses} />
       </div>
-      {error && <p className="error">{error}</p>}
       {weeklyExpenses.length > 0 ? (
         <ul className="expenses">
           {weeklyExpenses.map((expense, index) => (

@@ -148,3 +148,7 @@ small.avg_down {
   gap: 1rem;
   flex-wrap: wrap;
 }
+
+.error {
+  color: tomato;
+}
