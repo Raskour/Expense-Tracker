@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Expenses from "./Expenses";
-import ManageExpenses from "./ManageExpenses";
+import Expenses from "./screens/Expenses";
+import ManageExpenses from "./screens/ManageExpenses";
 
 import "./App.css";
 
