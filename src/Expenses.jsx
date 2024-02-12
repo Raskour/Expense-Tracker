@@ -78,7 +78,10 @@ export default function FirstPage() {
                 {expense.type_name} {expenseIconMap[expense.type_name]}
               </span>
               <div className="expense_item--amount">
-                <strong>${expense.current_week_amount} / week</strong>
+                <strong>
+                  ${parseFloat(expense.current_week_avg_amount).toFixed(2)} /
+                  week
+                </strong>
                 <PercAverageDiff percentageDiff={expense.percentage_diff} />
               </div>
             </div>
@@ -116,13 +119,13 @@ function PercAverageDiff({ percentageDiff }) {
   if (percentageDiff > 0) {
     return (
       <small className="avg_up">
-        ↑ ${Math.abs(percentageDiff)}% above average
+        ↑ ${Math.abs(Math.round(percentageDiff))}% above average
       </small>
     );
   } else if (percentageDiff < 0) {
     return (
       <small className="avg_down">
-        ↓ ${Math.abs(percentageDiff)}% below average
+        ↓ ${Math.abs(Math.round(percentageDiff))}% below average
       </small>
     );
   } else {
