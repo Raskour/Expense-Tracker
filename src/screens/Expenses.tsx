@@ -8,7 +8,9 @@ import { expenseIconMap } from "../utils";
 export default function Expenses() {
   const [weeklyExpenses, setWeeklyExpenses] = useState<WeeklyExpenseItem[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isWeeklyExpenseLoading, setIsWeeklyExpenseLoading] =
+    useState<boolean>(true);
   const [hasCurrentDayExpenses, setHasCurrentDayExpenses] =
     useState<boolean>(false);
 
@@ -26,6 +28,8 @@ export default function Expenses() {
         setWeeklyExpenses(data);
       } catch (err: any) {
         setError(err?.message);
+      } finally {
+        setIsWeeklyExpenseLoading(false);
       }
     }
 
@@ -59,7 +63,7 @@ export default function Expenses() {
     fetchCurrentDayExpenses();
   }, []);
 
-  if (isLoading) {
+  if (isLoading || isWeeklyExpenseLoading) {
     return <p>Loading...</p>;
   }
 
@@ -90,7 +94,7 @@ export default function Expenses() {
           ))}
         </ul>
       ) : (
-        <h2>No expenses found. Please add some expenses to track.</h2>
+        <p>No expenses found. Please add some expenses to track.</p>
       )}
     </main>
   );
