@@ -97,7 +97,11 @@ function ManageExpensesLink({ hasCurrentDayExpenses }) {
       </Link>
     );
   }
-  return <Link to="/expenses/add">Add expenses</Link>;
+  return (
+    <Link to="/expenses/add" className="button link">
+      Add expenses
+    </Link>
+  );
 }
 
 const expenseIconMap = {
